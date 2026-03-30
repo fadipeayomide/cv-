@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Fadipe Ayomide John - Awards & Certifications">
+    <meta name="keywords" content="Fadipe Ayomide, awards, certifications">
+    <meta name="author" content="Fadipe Ayomide John">
+    
+    <link rel="icon" type="image/jpeg" href="profile.jpg">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="awards.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+    
+    <title>Awards & Certifications - Fadipe Ayomide John</title>
+</head>
+
+<body>
+
+    <!-- Back Button -->
+    <div class="breadcrumb-nav">
+        <div class="container">
+            <a href="index.html" class="back-link">
+                <i class="fas fa-arrow-left"></i> Back to Home
+            </a>
+            <span class="breadcrumb-divider">/</span>
+            <span class="breadcrumb-current">Awards</span>
+        </div>
+    </div>
+
+    <!-- Awards Section -->
+    <section id="awards" class="awards-section">
+        <div class="container">
+            <div class="awards-header">
+                <h1>Awards & Certifications</h1>
+                <p class="section-intro">Recognition of academic excellence, leadership, and professional development</p>
+            </div>
+            
+            <!-- Filter Buttons -->
+            <div class="awards-filter">
+                <button class="filter-btn active" data-filter="all">
+                    <i class="fas fa-th"></i> All
+                </button>
+                <button class="filter-btn" data-filter="award">
+                    <i class="fas fa-trophy"></i> Awards
+                </button>
+                <button class="filter-btn" data-filter="certification">
+                    <i class="fas fa-certificate"></i> Certifications
+                </button>
+                <button class="filter-btn" data-filter="scholarship">
+                    <i class="fas fa-graduation-cap"></i> Scholarships
+                </button>
+            </div>
+            
+            <!-- Awards Grid -->
+            <div class="awards-grid">
+                
+                <!-- Award 1 -->
+                <div class="award-item" data-category="scholarship">
+                    <div class="award-card">
+                        <div class="award-header">
+                            <div class="award-icon"><i class="fas fa-award"></i></div>
+                            <span class="award-badge scholarship-badge">Scholarship</span>
+                        </div>
+                        <h3>Foursquare Student Fellowship</h3>
+                        <p class="award-issuer">Foursquare Church</p>
+                        <p class="award-date"><i class="fas fa-calendar"></i> 2024 - 2025</p>
+                        <p class="award-description">60% tuition scholarship awarded for outstanding academic performance (3.54/4.00 GPA) and demonstrated leadership qualities in the Computer Engineering Department.</p>
+                        <div class="award-highlights">
+                            <span class="highlight">60% Tuition</span>
+                            <span class="highlight">Academic Excellence</span>
+                        </div>
+                        <div class="award-actions">
+                            <button class="btn-small" onclick="openAwardModal(1)">
+                                <i class="fas fa-image"></i> View Certificate
+                            </button>
+                            <button class="btn-small" onclick="shareAward('Foursquare Fellowship')">
+                                <i class="fas fa-share-alt"></i> Share
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Award 2 -->
+                <div class="award-item" data-category="award">
+                    <div class="award-card">
+                        <div class="award-header">
+                            <div class="award-icon"><i class="fas fa-star"></i></div>
+                            <span class="award-badge award-badge">Award</span>
+                        </div>
+                        <h3>Academic Excellence Award</h3>
+                        <p class="award-issuer">School of Virtue, Federal Polytechnic Ilaro</p>
+                        <p class="award-date"><i class="fas fa-calendar"></i> February 2025</p>
+                        <p class="award-description">Recognized for maintaining a "Distinction" grade point average (3.54/4.00) while demonstrating exemplary character.</p>
+                        <div class="award-highlights">
+                            <span class="highlight">Distinction Grade</span>
+                            <span class="highlight">Character Excellence</span>
+                        </div>
+                        <div class="award-actions">
+                            <button class="btn-small" onclick="openAwardModal(2)">
+                                <i class="fas fa-image"></i> View Certificate
+                            </button>
+                            <button class="btn-small" onclick="shareAward('Academic Excellence Award')">
+                                <i class="fas fa-share-alt"></i> Share
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Award 3 -->
+                <div class="award-item" data-category="award">
+                    <div class="award-card">
+                        <div class="award-header">
+                            <div class="award-icon"><i class="fas fa-chalkboard-user"></i></div>
+                            <span class="award-badge award-badge">Award</span>
+                        </div>
+                        <h3>ND Students Tutor Recognition</h3>
+                        <p class="award-issuer">NACOMES, Federal Polytechnic Ilaro</p>
+                        <p class="award-date"><i class="fas fa-calendar"></i> 2024 - 2025</p>
+                        <p class="award-description">Recognized for "immense contributions" to the Department of Computer Engineering through academic support.</p>
+                        <div class="award-highlights">
+                            <span class="highlight">Mentorship</span>
+                            <span class="highlight">50+ Students</span>
+                        </div>
+                        <div class="award-actions">
+                            <button class="btn-small" onclick="openAwardModal(3)">
+                                <i class="fas fa-image"></i> View Certificate
+                            </button>
+                            <button class="btn-small" onclick="shareAward('NACOMES Recognition')">
+                                <i class="fas fa-share-alt"></i> Share
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Award 4 -->
+                <div class="award-item" data-category="award">
+                    <div class="award-card">
+                        <div class="award-header">
+                            <div class="award-icon"><i class="fas fa-trophy"></i></div>
+                            <span class="award-badge award-badge">Award</span>
+                        </div>
+                        <h3>Technical Quiz Competition</h3>
+                        <p class="award-issuer">NAPES, Federal Polytechnic Ilaro</p>
+                        <p class="award-date"><i class="fas fa-calendar"></i> September 2024</p>
+                        <p class="award-description">Selected to represent the Department of Computer Engineering in the Annual Interdepartmental Quiz Competition.</p>
+                        <div class="award-highlights">
+                            <span class="highlight">Representative</span>
+                            <span class="highlight">Competition</span>
+                        </div>
+                        <div class="award-actions">
+                            <button class="btn-small" onclick="openAwardModal(4)">
+                                <i class="fas fa-image"></i> View Certificate
+                            </button>
+                            <button class="btn-small" onclick="shareAward('Technical Quiz Competition')">
+                                <i class="fas fa-share-alt"></i> Share
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Certification 1 -->
+                <div class="award-item" data-category="certification">
+                    <div class="award-card">
+                        <div class="award-header">
+                            <div class="award-icon"><i class="fas fa-certificate"></i></div>
+                            <span class="award-badge cert-badge">Certification</span>
+                        </div>
+                        <h3>Diploma in Information Technology Support</h3>
+                        <p class="award-issuer">Alison Online Learning Platform</p>
+                        <p class="award-date"><i class="fas fa-calendar"></i> November 2025</p>
+                        <p class="award-description">Comprehensive professional diploma covering IT support fundamentals and technical troubleshooting.</p>
+                        <div class="award-highlights">
+                            <span class="highlight">IT Support</span>
+                            <span class="highlight">Technical Skills</span>
+                        </div>
+                        <div class="award-actions">
+                            <button class="btn-small" onclick="openAwardModal(5)">
+                                <i class="fas fa-image"></i> View Certificate
+                            </button>
+                            <button class="btn-small" onclick="shareAward('IT Support Diploma')">
+                                <i class="fas fa-share-alt"></i> Share
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Certification 2 -->
+                <div class="award-item" data-category="certification">
+                    <div class="award-card">
+                        <div class="award-header">
+                            <div class="award-icon"><i class="fas fa-chart-bar"></i></div>
+                            <span class="award-badge cert-badge">Certification</span>
+                        </div>
+                        <h3>Introduction to Data Analysis</h3>
+                        <p class="award-issuer">Alison Online Learning Platform</p>
+                        <p class="award-date"><i class="fas fa-calendar"></i> October 2025</p>
+                        <p class="award-description">Foundational certification in data analysis methodologies and data visualization techniques.</p>
+                        <div class="award-highlights">
+                            <span class="highlight">Data Analysis</span>
+                            <span class="highlight">Visualization</span>
+                        </div>
+                        <div class="award-actions">
+                            <button class="btn-small" onclick="openAwardModal(6)">
+                                <i class="fas fa-image"></i> View Certificate
+                            </button>
+                            <button class="btn-small" onclick="shareAward('Data Analysis Certification')">
+                                <i class="fas fa-share-alt"></i> Share
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <!-- Stats -->
+            <div class="awards-stats">
+                <div class="stat">
+                    <h4>6</h4>
+                    <p>Awards & Certifications</p>
+                </div>
+                <div class="stat">
+                    <h4>4</h4>
+                    <p>Institutional Awards</p>
+                </div>
+                <div class="stat">
+                    <h4>2</h4>
+                    <p>Professional Certifications</p>
+                </div>
+            </div>
+
+            <!-- Back Button -->
+            <div class="back-button-bottom">
+                <a href="index.html" class="btn-back">
+                    <i class="fas fa-arrow-left"></i> Return to Home
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- SINGLE MODAL FOR ALL CERTIFICATES          -->
+    <!-- ============================================ -->
+    <div id="certificateModal" class="award-modal hidden">
+        <div class="modal-overlay" onclick="closeAwardModal()"></div>
+        <div class="modal-content-award">
+            <button class="modal-close" onclick="closeAwardModal()">✕</button>
+            <div class="modal-body">
+                <img id="modalImage" src="" alt="Certificate" class="award-modal-image" onerror="handleImageError()">
+                <div id="imageErrorMessage" class="image-error-message" style="display:none;">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <p>Certificate image could not be loaded</p>
+                </div>
+                <div class="modal-info">
+                    <h3 id="modalTitle"></h3>
+                    <p id="modalIssuer" class="award-issuer-modal"></p>
+                    <p id="modalDescription"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    
+    <script src="awards.js"></script>
+</body>
+
+</html>

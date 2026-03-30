@@ -1,0 +1,781 @@
+
+
+
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #6366f1;
+    --secondary-color: #10b981;
+    --accent-color: #f59e0b;
+    --danger-color: #ef4444;
+    --dark-bg: #0f172a;
+    --light-bg: #f8fafc;
+    --card-bg: #ffffff;
+    --border-color: #e2e8f0;
+    --text-primary: #1e293b;
+    --text-secondary: #64748b;
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--light-bg);
+    color: var(--text-primary);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ==================== */
+/* BREADCRUMB NAVIGATION */
+/* ==================== */
+.breadcrumb-nav {
+    background-color: var(--card-bg);
+    border-bottom: 1px solid var(--border-color);
+    padding: 20px 0;
+    margin-bottom: 40px;
+}
+
+.breadcrumb-nav .container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.back-link {
+    color: var(--primary-color);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.back-link:hover {
+    color: var(--text-primary);
+    transform: translateX(-3px);
+}
+
+.breadcrumb-divider {
+    color: var(--border-color);
+    font-size: 18px;
+}
+
+.breadcrumb-current {
+    color: var(--text-secondary);
+    font-size: 14px;
+}
+
+/* ==================== */
+/* AWARDS SECTION */
+/* ==================== */
+.awards-section {
+    padding: 40px 0;
+    min-height: calc(100vh - 100px);
+}
+
+.awards-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.awards-header h1 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: var(--text-primary);
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.section-intro {
+    font-size: 18px;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto;
+    font-weight: 400;
+}
+
+/* ==================== */
+/* FILTER BUTTONS */
+/* ==================== */
+.awards-filter {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 50px;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    padding: 10px 20px;
+    border: 2px solid var(--border-color);
+    background-color: var(--card-bg);
+    color: var(--text-primary);
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.filter-btn:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    box-shadow: var(--shadow-md);
+}
+
+.filter-btn.active {
+    background-color: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+    box-shadow: var(--shadow-md);
+}
+
+/* ==================== */
+/* AWARDS GRID */
+/* ==================== */
+.awards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 30px;
+    margin-bottom: 50px;
+}
+
+.award-item {
+    opacity: 1;
+    transition: all 0.3s ease;
+    animation: fadeInUp 0.5s ease;
+}
+
+.award-item.hidden {
+    display: none;
+    opacity: 0;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.award-card {
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    padding: 30px;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.award-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+}
+
+.award-card:hover::before {
+    transform: scaleX(1);
+}
+
+.award-card:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-5px);
+    border-color: var(--primary-color);
+}
+
+/* ==================== */
+/* AWARD HEADER */
+/* ==================== */
+.award-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    gap: 15px;
+}
+
+.award-icon {
+    width: 50px;
+    height: 50px;
+    min-width: 50px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: white;
+    box-shadow: var(--shadow-md);
+}
+
+.award-badge {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.award-badge.award-badge {
+    background-color: #fce7f3;
+    color: #be185d;
+}
+
+.award-badge.certification-badge,
+.award-badge.cert-badge {
+    background-color: #dbeafe;
+    color: #0284c7;
+}
+
+.award-badge.scholarship-badge {
+    background-color: #dcfce7;
+    color: #166534;
+}
+
+/* ==================== */
+/* AWARD CONTENT */
+/* ==================== */
+.award-card h3 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: var(--text-primary);
+    line-height: 1.4;
+}
+
+.award-issuer {
+    font-size: 14px;
+    color: var(--primary-color);
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+.award-date {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.award-date i {
+    opacity: 0.6;
+}
+
+.award-description {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 20px;
+    flex-grow: 1;
+}
+
+/* ==================== */
+/* AWARD HIGHLIGHTS */
+/* ==================== */
+.award-highlights {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.highlight {
+    display: inline-block;
+    padding: 6px 12px;
+    background-color: var(--light-bg);
+    border-radius: 6px;
+    font-size: 12px;
+    color: var(--primary-color);
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.highlight:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* ==================== */
+/* AWARD ACTIONS */
+/* ==================== */
+.award-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: auto;
+}
+
+.btn-small {
+    flex: 1;
+    padding: 10px 15px;
+    border: 1px solid var(--border-color);
+    background-color: white;
+    color: var(--primary-color);
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.btn-small:hover {
+    background-color: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+}
+
+.btn-small:active {
+    transform: translateY(0);
+}
+
+/* ==================== */
+/* STATS SECTION */
+/* ==================== */
+.awards-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+    margin-bottom: 50px;
+    padding: 40px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: var(--shadow-lg);
+}
+
+.stat {
+    color: white;
+}
+
+.stat h4 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.stat p {
+    font-size: 14px;
+    opacity: 0.9;
+    font-weight: 500;
+}
+
+/* ==================== */
+/* BACK BUTTON */
+/* ==================== */
+.back-button-bottom {
+    text-align: center;
+}
+
+.btn-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 30px;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-md);
+}
+
+.btn-back:hover {
+    background-color: #4f46e5;
+    transform: translateX(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.btn-back:active {
+    transform: translateX(-3px);
+}
+
+/* ==================== */
+/* MODAL STYLES */
+/* ==================== */
+.award-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+}
+
+.award-modal.show {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.3s ease;
+}
+
+.award-modal.hidden {
+    display: none;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    cursor: pointer;
+}
+
+.modal-content-award {
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    padding: 40px;
+    max-width: 600px;
+    width: 90%;
+    position: relative;
+    z-index: 1001;
+    box-shadow: var(--shadow-lg);
+    animation: slideUp 0.3s ease;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.modal-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 28px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.modal-close:hover {
+    color: var(--text-primary);
+    background-color: var(--light-bg);
+}
+
+.modal-body {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.award-modal-image {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 8px;
+    background-color: var(--light-bg);
+    display: block;
+}
+
+.image-error-message {
+    background-color: #fee2e2;
+    border: 2px solid #fecaca;
+    color: #dc2626;
+    padding: 30px 20px;
+    border-radius: 8px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    min-height: 250px;
+    justify-content: center;
+}
+
+.image-error-message i {
+    font-size: 48px;
+    opacity: 0.8;
+}
+
+.image-error-message p {
+    font-weight: 500;
+    margin: 0;
+}
+
+/* ==================== */
+/* MODAL INFO */
+/* ==================== */
+.modal-info h3 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: var(--text-primary);
+}
+
+.award-issuer-modal {
+    color: var(--primary-color);
+    font-weight: 500;
+    font-size: 14px;
+    margin-bottom: 10px !important;
+}
+
+.modal-info p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* ==================== */
+/* SCROLLBAR STYLING */
+/* ==================== */
+.modal-content-award::-webkit-scrollbar {
+    width: 6px;
+}
+
+.modal-content-award::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.modal-content-award::-webkit-scrollbar-thumb {
+    background-color: var(--border-color);
+    border-radius: 3px;
+}
+
+.modal-content-award::-webkit-scrollbar-thumb:hover {
+    background-color: var(--text-secondary);
+}
+
+/* ==================== */
+/* RESPONSIVE DESIGN */
+/* ==================== */
+@media (max-width: 768px) {
+    .awards-header h1 {
+        font-size: 36px;
+    }
+
+    .section-intro {
+        font-size: 16px;
+    }
+
+    .awards-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .awards-filter {
+        flex-direction: column;
+    }
+
+    .filter-btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .awards-stats {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 30px;
+    }
+
+    .stat h4 {
+        font-size: 28px;
+    }
+
+    .modal-content-award {
+        padding: 25px;
+    }
+
+    .award-modal-image {
+        height: 250px;
+    }
+
+    .award-card {
+        padding: 20px;
+    }
+
+    .award-card h3 {
+        font-size: 18px;
+    }
+
+    .breadcrumb-nav {
+        padding: 15px 0;
+        margin-bottom: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .awards-header h1 {
+        font-size: 28px;
+    }
+
+    .awards-header {
+        margin-bottom: 30px;
+    }
+
+    .section-intro {
+        font-size: 15px;
+    }
+
+    .award-card {
+        padding: 15px;
+    }
+
+    .award-header {
+        gap: 10px;
+    }
+
+    .award-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+    }
+
+    .award-card h3 {
+        font-size: 16px;
+    }
+
+    .award-description {
+        font-size: 13px;
+    }
+
+    .modal-content-award {
+        width: 95%;
+        padding: 20px;
+    }
+
+    .award-modal-image {
+        height: 200px;
+    }
+
+    .modal-info h3 {
+        font-size: 20px;
+    }
+
+    .award-actions {
+        flex-direction: column;
+    }
+
+    .btn-small {
+        width: 100%;
+    }
+
+    .awards-filter {
+        gap: 10px;
+    }
+
+    .filter-btn {
+        font-size: 12px;
+        padding: 8px 16px;
+    }
+
+    .awards-stats {
+        gap: 15px;
+        padding: 25px 15px;
+    }
+
+    .stat h4 {
+        font-size: 24px;
+    }
+
+    .btn-back {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+
+    .modal-close {
+        width: 35px;
+        height: 35px;
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 360px) {
+    .awards-header h1 {
+        font-size: 24px;
+    }
+
+    .award-card {
+        padding: 12px;
+    }
+
+    .award-badge {
+        font-size: 10px;
+        padding: 4px 8px;
+    }
+
+    .highlight {
+        font-size: 11px;
+        padding: 4px 8px;
+    }
+}

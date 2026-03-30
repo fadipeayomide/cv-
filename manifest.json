@@ -1,0 +1,75 @@
+{
+  "name": "Fadipe Ayomide John - Portfolio",
+  "short_name": "Fadipe Portfolio",
+  "description": "Computer Engineering Graduate with expertise in web development, technical mentorship, and IT support. View my projects and skills.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "theme_color": "#1a2a6c",
+  "background_color": "#ffffff",
+  "prefer_related_applications": false,
+  "categories": ["productivity", "business"],
+  "screenshots": [
+    {
+      "src": "profile.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg",
+      "purpose": "any"
+    },
+    {
+      "src": "profile.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any"
+    }
+  ],
+  "icons": [
+    {
+      "src": "profile.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg",
+      "purpose": "any"
+    },
+    {
+      "src": "profile.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "View Projects",
+      "short_name": "Projects",
+      "description": "View my featured projects",
+      "url": "/#projects",
+      "icons": [
+        {
+          "src": "profile.jpg",
+          "sizes": "192x192",
+          "type": "image/jpeg"
+        }
+      ]
+    },
+    {
+      "name": "Contact Me",
+      "short_name": "Contact",
+      "description": "Send me a message",
+      "url": "/#contact-form",
+      "icons": [
+        {
+          "src": "profile.jpg",
+          "sizes": "192x192",
+          "type": "image/jpeg"
+        }
+      ]
+    }
+  ],
+  "related_applications": [],
+  "author": {
+    "name": "Fadipe Ayomide John",
+    "url": "https://ayomidefadipe.netlify.app",
+    "email": "fadipeayomide17@gmail.com"
+  }
+}
