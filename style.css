@@ -1115,6 +1115,46 @@ body.dark-mode .footer-section {
 }
 
 /* Mobile (480px and below) */
+/* 1. Style the 3-bar icon */
+.menu-toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.bar {
+    height: 3px;
+    width: 100%;
+    background-color: white; /* Match your logo color */
+    border-radius: 10px;
+}
+
+/* 2. Hide the menu and position it vertically */
+.nav-menu {
+    display: none; /* Hidden by default on mobile */
+    flex-direction: column;
+    position: absolute;
+    top: 70px; /* Adjust based on your header height */
+    left: 0;
+    width: 100%;
+    background: #1a2a6c; /* Match your theme */
+    padding: 20px 0;
+    text-align: center;
+    z-index: 100;
+}
+
+/* 3. This class will be added by JavaScript when clicked */
+.nav-menu.active {
+    display: flex;
+}
+
+
+
 @media (max-width: 480px) {
     .navbar {
         padding: 15px 5%;
