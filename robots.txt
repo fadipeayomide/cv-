@@ -1,103 +1,21 @@
-# robots.txt - Search Engine Crawler Instructions
-# Last Updated: January 2026
-
-# ================================================
-# GENERAL RULES FOR ALL SEARCH ENGINES
-# ================================================
+# robots.txt for ayomidefadipe.netlify.app
+# Last Updated: March 2026
 
 User-agent: *
 Allow: /
-Allow: /index.html
-Allow: /style.css
-Allow: /script.js
-Allow: /manifest.json
-Allow: /*.jpg
-Allow: /*.png
-Allow: /*.pdf
 
-# Disallow private/sensitive areas
-Disallow: /.git
+# Block Sensitive Folders
+Disallow: /.git/
 Disallow: /node_modules/
 Disallow: /.env
-Disallow: /.DS_Store
-Disallow: /Thumbs.db
+Disallow: /dist/
 
-# ================================================
-# GOOGLE SPECIFIC RULES
-# ================================================
-
-User-agent: Googlebot
-Allow: /
-Crawl-delay: 0
-Request-rate: unlimited
-
-# ================================================
-# BING/MICROSOFT SPECIFIC RULES
-# ================================================
-
-User-agent: Bingbot
-Allow: /
-Crawl-delay: 1
-Request-rate: 30 requests per minute
-
-# ================================================
-# OTHER MAJOR SEARCH ENGINES
-# ================================================
-
-# Yahoo
-User-agent: Slurp
-Allow: /
-Crawl-delay: 1
-
-# DuckDuckGo
-User-agent: DuckDuckBot
-Allow: /
-Crawl-delay: 0
-
-# Yandex (Russia)
-User-agent: YandexBot
-Allow: /
-Crawl-delay: 1
-
-# Baidu (China)
-User-agent: Baiduspider
-Allow: /
-Crawl-delay: 1
-
-# ================================================
-# BLOCK AGGRESSIVE BOTS
-# ================================================
-
+# Block Aggressive SEO Scrapers
 User-agent: AhrefsBot
-Disallow: /
-
 User-agent: SemrushBot
-Disallow: /
-
 User-agent: MJ12bot
-Disallow: /
-
 User-agent: DotBot
 Disallow: /
 
-# ================================================
-# SITEMAP LOCATIONS
-# ================================================
-
+# Sitemap Location
 Sitemap: https://ayomidefadipe.netlify.app/sitemap.xml
-Sitemap: https://ayomidefadipe.netlify.app/robots.txt
-
-# ================================================
-# CACHING INSTRUCTIONS
-# ================================================
-
-Cache-Control: public, max-age=86400
-
-# ================================================
-# IMPORTANT NOTES
-# ================================================
-# - This file must be in the root directory
-# - Bots check this file first when visiting
-# - All paths are relative to the root
-# - Comments start with #
-# - Empty lines separate rule blocks
