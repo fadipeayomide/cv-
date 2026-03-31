@@ -682,11 +682,21 @@ console.log('✅ All Systems Ready! 🎉');
 // ============================================
 // FORM VALIDATION & SUBMISSION WITH NOTIFICATIONS
 // ============================================
+// ============================================
+// CONTACT FORM - EMAIL & WHATSAPP
+// ============================================
 
-const contactForm = document.querySelector('form[name="contact"]');
+const contactForm = document.getElementById('contactForm');
 const nameInput = document.getElementById('name');
 const emailInput = document.getElementById('email');
 const messageInput = document.getElementById('message');
+
+// Your contact information
+const CONTACT_INFO = {
+    email: 'fadipeayomide17@gmail.com',
+    whatsappNumber: '2349033212713', // Replace with your WhatsApp number (with country code, no + sign)
+    website: 'https://ayomidefadipe.netlify.app' // Replace with your website
+};
 
 /**
  * Validate email format
@@ -778,10 +788,10 @@ function validateForm() {
  */
 function showNotification(message, type = 'success') {
     const notifDiv = document.createElement('div');
-    const bgColor = type === 'success' ? '#dcfce7' : '#fee2e2';
-    const textColor = type === 'success' ? '#15803d' : '#991b1b';
-    const borderColor = type === 'success' ? '#22c55e' : '#dc2626';
-    const icon = type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle';
+    const bgColor = type === 'success' ? '#dcfce7' : type === 'error' ? '#fee2e2' : '#dbeafe';
+    const textColor = type === 'success' ? '#15803d' : type === 'error' ? '#991b1b' : '#0c4a6e';
+    const borderColor = type === 'success' ? '#22c55e' : type === 'error' ? '#dc2626' : '#0284c7';
+    const icon = type === 'success' ? 'fa-check-circle' : type === 'error' ? 'fa-exclamation-circle' : 'fa-info-circle';
     
     notifDiv.style.cssText = `
         background-color: ${bgColor};
@@ -811,6 +821,79 @@ function showNotification(message, type = 'success') {
 }
 
 /**
+ * Send via Email
+ */
+async function sendViaEmail(name, email, message) {
+    try {
+        // Try EmailJS (free service)
+        if (typeof emailjs !== 'undefined') {
+            await emailjs.send('service_id', 'template_id', {
+                to_email: CONTACT_INFO.email,
+                from_name: name,
+                from_email: email,
+                message: message
+            });
+            return { success: true, method: 'email' };
+        }
+
+        // Fallback: Try Netlify Forms
+        const formData = new FormData();
+        formData.append('name', name);
+        formData.append('email', email);
+        formData.append('message', message);
+
+        const response = await fetch('/', {
+            method: 'POST',
+            body: formData
+        });
+
+        if (response.ok) {
+            return { success: true, method: 'email' };
+        }
+
+        throw new Error('Netlify submission failed');
+
+    } catch (error) {
+        console.error('Email submission error:', error);
+        // Fallback to mailto
+        return { success: false, method: 'email', error };
+    }
+}
+
+/**
+ * Send via WhatsApp
+ */
+function sendViaWhatsApp(name, email, message) {
+    try {
+        const whatsappMessage = encodeURIComponent(
+            `Hello! My name is ${name}.\n\nEmail: ${email}\n\nMessage: ${message}\n\nI sent this via your portfolio website.`
+        );
+        
+        const whatsappUrl = `https://wa.me/${CONTACT_INFO.whatsappNumber}?text=${whatsappMessage}`;
+        window.open(whatsappUrl, '_blank');
+        
+        return { success: true, method: 'whatsapp' };
+    } catch (error) {
+        console.error('WhatsApp error:', error);
+        return { success: false, method: 'whatsapp', error };
+    }
+}
+
+/**
+ * Send via Email (Fallback - Open Mail Client)
+ */
+function sendViaMailto(name, email, message) {
+    const subject = encodeURIComponent(`Message from ${name}`);
+    const body = encodeURIComponent(
+        `Hi Fadipe,\n\n${message}\n\n---\nFrom: ${name}\nEmail: ${email}\n\nSent via: ${CONTACT_INFO.website}`
+    );
+    
+    window.location.href = `mailto:${CONTACT_INFO.email}?subject=${subject}&body=${body}`;
+    
+    return { success: true, method: 'email' };
+}
+
+/**
  * Handle form submission
  */
 if (contactForm) {
@@ -823,36 +906,68 @@ if (contactForm) {
             return;
         }
         
-        const formData = new FormData(contactForm);
         const name = nameInput.value.trim();
         const email = emailInput.value.trim();
         const message = messageInput.value.trim();
+        const deliveryMethod = document.querySelector('input[name="delivery"]:checked').value;
         
         try {
-            // Try Netlify form submission
-            const response = await fetch('/', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                body: new URLSearchParams(formData).toString(),
-            });
+            let result;
             
-            // Show success
-            showNotification('✅ Message sent successfully! I will get back to you soon.', 'success');
+            // Show loading state
+            const submitBtn = contactForm.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+            submitBtn.disabled = true;
+            
+            // Send based on selected method
+            if (deliveryMethod === 'email') {
+                result = await sendViaEmail(name, email, message);
+                
+                if (!result.success) {
+                    // Fallback to mailto
+                    sendViaMailto(name, email, message);
+                    showNotification('📧 Opening your email client...', 'info');
+                } else {
+                    showNotification('✅ Message sent successfully via Email! I will get back to you soon.', 'success');
+                }
+            } 
+            else if (deliveryMethod === 'whatsapp') {
+                result = sendViaWhatsApp(name, email, message);
+                showNotification('📱 Opening WhatsApp... Please complete the message sending.', 'success');
+            } 
+            else if (deliveryMethod === 'both') {
+                // Try email first
+                const emailResult = await sendViaEmail(name, email, message);
+                if (!emailResult.success) {
+                    sendViaMailto(name, email, message);
+                }
+                
+                // Then WhatsApp
+                setTimeout(() => {
+                    sendViaWhatsApp(name, email, message);
+                }, 1500);
+                
+                showNotification('✅ Sending via Email and WhatsApp...', 'success');
+            }
+            
+            // Reset form
             contactForm.reset();
-            console.log('✉️ Form submitted via Netlify');
+            
+            // Restore button
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+            
+            console.log('✉️ Message sent via:', deliveryMethod);
             
         } catch (error) {
             console.error('Form submission error:', error);
+            showNotification('❌ An error occurred. Please try again.', 'error');
             
-            // Fallback: Open email client
-            const subject = encodeURIComponent(`Message from ${name}`);
-            const body = encodeURIComponent(
-                `Hi Fadipe,\n\n${message}\n\n---\nFrom: ${name}\nEmail: ${email}`
-            );
-            window.location.href = `mailto:fadipeayomide17@gmail.com?subject=${subject}&body=${body}`;
-            
-            showNotification('Opening your email client...', 'success');
-            contactForm.reset();
+            // Restore button
+            const submitBtn = contactForm.querySelector('button[type="submit"]');
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
         }
     });
     
@@ -864,9 +979,10 @@ if (contactForm) {
             }
         });
     });
+    
+    console.log('✅ Contact Form: Initialized with Email & WhatsApp');
 }
-
-console.log('✅ Form with Email Notifications: Initialized');
+       
 
 
 
