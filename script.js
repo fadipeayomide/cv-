@@ -694,7 +694,7 @@ const messageInput = document.getElementById('message');
 // ✅ UPDATE THESE THREE VALUES ONLY!
 const CONTACT_INFO = {
     email: 'fadipeayomide17@gmail.com',        // ← YOUR EMAIL
-    whatsappNumber: '2348123456789',           // ← YOUR WHATSAPP (no + or spaces)
+    whatsappNumber: '2349033212713',           // ← YOUR WHATSAPP (no + or spaces)
     website: 'https://ayomidefadipe.netlify.app'
 };
 
