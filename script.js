@@ -686,15 +686,16 @@ console.log('✅ All Systems Ready! 🎉');
 // CONTACT FORM - EMAIL & WHATSAPP (WORKING VERSION)
 // ============================================
 
+
 const contactForm = document.getElementById('contactForm');
 const nameInput = document.getElementById('name');
 const emailInput = document.getElementById('email');
 const messageInput = document.getElementById('message');
 
-// ✅ UPDATE THESE THREE VALUES ONLY!
+// ✅ UPDATED CONSTANTS
 const CONTACT_INFO = {
-    email: 'fadipeayomide17@gmail.com',        // ← YOUR EMAIL
-    whatsappNumber: '2349033212713',           // ← YOUR WHATSAPP (no + or spaces)
+    formspreeEndpoint: 'https://formspree.io/f/mnjooenj', // ← Formspree handles the sending
+    whatsappNumber: '2349033212713',                    // ← Your WhatsApp
     website: 'https://ayomidefadipe.netlify.app'
 };
 
@@ -817,42 +818,46 @@ function showNotification(message, type = 'success') {
 }
 
 /**
- * Send via WhatsApp
+ * Send via WhatsApp (Fixed Logic)
  */
 function sendViaWhatsApp(name, email, message) {
     const whatsappMessage = encodeURIComponent(
-        `Hello! My name is ${name}.\n\nEmail: ${email}\n\nMessage: ${message}\n\nI sent this via your portfolio website.`
+        `*New Portfolio Message*\n\n*Name:* ${name}\n*Email:* ${email}\n*Message:* ${message}`
     );
-    
     const whatsappUrl = `https://wa.me/${CONTACT_INFO.whatsappNumber}?text=${whatsappMessage}`;
     window.open(whatsappUrl, '_blank');
-    
-    return true;
 }
 
 /**
- * Send via Email (Open Mail Client)
+ * Send via Formspree (Automatic Email)
  */
-function sendViaEmail(name, email, message) {
-    const subject = encodeURIComponent(`Message from ${name}`);
-    const body = encodeURIComponent(
-        `Hi Fadipe,\n\n${message}\n\n---\nFrom: ${name}\nEmail: ${email}\n\nSent via: ${CONTACT_INFO.website}`
-    );
+async function sendViaEmail(name, email, message) {
+    const response = await fetch(CONTACT_INFO.formspreeEndpoint, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+            name: name,
+            email: email,
+            message: message
+        })
+    });
     
-    window.location.href = `mailto:${CONTACT_INFO.email}?subject=${subject}&body=${body}`;
-    
-    return true;
+    if (!response.ok) {
+        throw new Error('Failed to send email');
+    }
 }
 
 /**
  * Handle form submission
  */
 if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
+    contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         
         if (!validateForm()) {
-            console.log('❌ Form validation failed');
             return;
         }
         
@@ -866,57 +871,36 @@ if (contactForm) {
         const originalText = submitBtn.innerHTML;
         submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
         submitBtn.disabled = true;
-        
-        // Small delay to show loading state
-        setTimeout(() => {
-            try {
-                if (deliveryMethod === 'email') {
-                    sendViaEmail(name, email, message);
-                    showNotification('📧 Opening your email client...', 'success');
-                } 
-                else if (deliveryMethod === 'whatsapp') {
-                    sendViaWhatsApp(name, email, message);
-                    showNotification('📱 Opening WhatsApp... Please complete the message.', 'success');
-                } 
-                else if (deliveryMethod === 'both') {
-                    sendViaEmail(name, email, message);
-                    setTimeout(() => {
-                        sendViaWhatsApp(name, email, message);
-                    }, 2000);
-                    showNotification('✅ Opening Email and WhatsApp...', 'success');
-                }
-                
-                // Reset form
-                contactForm.reset();
-                
-                // Restore button
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
-                
-                console.log('✉️ Message sent via:', deliveryMethod);
-                
-            } catch (error) {
-                console.error('Error:', error);
-                showNotification('❌ An error occurred. Please try again.', 'error');
-                
-                // Restore button
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
+
+        try {
+            if (deliveryMethod === 'email' || deliveryMethod === 'both') {
+                await sendViaEmail(name, email, message);
+                showNotification('📧 Message sent to my Email!', 'success');
+            } 
+
+            if (deliveryMethod === 'whatsapp' || deliveryMethod === 'both') {
+                sendViaWhatsApp(name, email, message);
+                showNotification('📱 Opening WhatsApp...', 'success');
             }
-        }, 500);
+            
+            contactForm.reset();
+        } catch (error) {
+            showNotification('❌ Could not send. Please check your connection.', 'error');
+        } finally {
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+        }
     });
-    
+
     // Clear errors on input
     [nameInput, emailInput, messageInput].forEach(input => {
         input.addEventListener('input', function() {
-            if (this.nextElementSibling && this.nextElementSibling.classList.contains('error-message')) {
-                removeInputError(this);
-            }
+            removeInputError(this);
         });
     });
-    
-    console.log('✅ Contact Form: Email & WhatsApp Initialized');
-        }
+}
+
+
        
 
 
