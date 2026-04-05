@@ -1,4 +1,4 @@
-# robots.txt for ayomidefadipe.netlify.app
+# robots.txt for ayomidefadipe.vercel.app
 # Last Updated: March 2026
 
 User-agent: *
@@ -18,4 +18,4 @@ User-agent: DotBot
 Disallow: /
 
 # Sitemap Location
-Sitemap: https://ayomidefadipe.netlify.app/sitemap.xml
+Sitemap: https://ayomidefadipe.vercel.app/sitemap.xml
