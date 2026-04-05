@@ -3,20 +3,19 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
     
     <url>
-        <loc>https://ayomidefadipe.netlify.app/</loc>
+        <loc>https://ayomidefadipe.vercel.app/</loc>
         <lastmod>2026-03-31</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
         <image:image>
-            <image:loc>https://ayomidefadipe.netlify.app/profile.jpg</image:loc>
+            <image:loc>https://ayomidefadipe.vercel.app/profile.jpg</image:loc>
             <image:title>Fadipe Ayomide John - Portfolio</image:title>
         </image:image>
     </url>
 
     <url>
-        <loc>https://ayomidefadipe.netlify.app/assets/docs/Fadipe_Ayomide_CV.pdf</loc>
+        <loc>https://ayomidefadipe.vercel.app/assets/docs/Fadipe_Ayomide_CV.pdf</loc>
         <lastmod>2026-03-31</lastmod>
         <priority>0.8</priority>
     </url>
 </urlset>
-
