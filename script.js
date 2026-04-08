@@ -696,7 +696,7 @@ const messageInput = document.getElementById('message');
 const CONTACT_INFO = {
     formspreeEndpoint: 'https://formspree.io/f/mnjooenj', // ← Formspree handles the sending
     whatsappNumber: '2349033212713',                    // ← Your WhatsApp
-    website: 'https://ayomidefadipe.netlify.app'
+    website: 'https://ayomidefadipe.vercel.app'
 };
 
 /**
