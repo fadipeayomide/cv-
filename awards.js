@@ -55,6 +55,15 @@ const awardData = [
         category: 'certification',
         description: 'Foundational certification in data analysis methodologies and data visualization techniques.',
         imagePath: 'assets/certificates/data-analysis-cert.jpg'
+    },
+    {
+        id: 7,
+        title: 'Digital Skills: Global Gig Worker',
+        issuer: 'Jobberman Nigeria & Mastercard Foundation',
+        date: 'April 2026',
+        category: 'certification',
+        description: 'A professional certification focused on digital literacy, remote collaboration tools, and global freelance management strategies.',
+        imagePath: 'assets/certificates/certificate-1.jpg'
     }
 ];
 
