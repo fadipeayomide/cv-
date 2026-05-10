@@ -139,6 +139,78 @@
     </script>
     
     <title>Fadipe Ayomide John - Web Developer Portfolio</title>
+
+  <style>
+   .qr-container{
+  position: relative;
+  width: fit-content;
+  background: white;
+  padding: 20px;
+  border-radius: 20px;
+  margin: 40px auto;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+#qrcode{
+  width: 300px;
+  height: 300px;
+}
+
+/* Make generated QR image responsive */
+#qrcode img,
+#qrcode canvas{
+  display: block;
+  width: 300px !important;
+  height: 300px !important;
+}
+
+/* Center Logo */
+.qr-logo{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%, -50%);
+  width:80px;
+  height:80px;
+  background:black;
+  color:white;
+  border-radius:15px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:28px;
+  font-weight:bold;
+  font-family:Poppins, sans-serif;
+  border:5px solid white;
+  box-shadow:0 0 10px rgba(0,0,0,0.2);
+}
+
+.qr-logo span{
+  color:#1e90ff;
+}
+
+
+@media (max-width: 480px){
+
+  #qrcode,
+  #qrcode img,
+  #qrcode canvas{
+    width: 250px !important;
+    height: 250px !important;
+  }
+
+  .qr-logo{
+    width:70px;
+    height:70px;
+    font-size:24px;
+  }
+}
+
+.qr-container {
+    margin-top: 20px;
+}
+  </style>
+    
 </head>
 
 <body>
@@ -667,6 +739,14 @@
                         <li><a href="#skills">Skills</a></li>
                         <li><a href="#contact">Contact</a></li>
                     </ul>
+                      <!-- QR CODE SECTION -->
+<div class="qr-container">
+    <div id="qrcode"></div>
+    <button onclick="downloadQRWithLogo()" class="btn primary" style="margin-top: 20px; width: 100%;">
+        <i class="fas fa-download"></i> Download QR Code with Logo
+    </button>
+</div>
+                    
                 </div>
 
                 <div class="footer-section-col">
@@ -704,6 +784,84 @@
     menu.addEventListener('click', function() {
         menuLinks.classList.toggle('active');
     });
+</script>
+
+    // Generate QR Code
+<!-- QRCode.js Library -->
+<script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+
+<script>
+// ==================== GENERATE QR CODE ====================
+document.addEventListener("DOMContentLoaded", function () {
+    const qrContainer = document.getElementById("qrcode");
+    qrContainer.innerHTML = "";
+
+    new QRCode(qrContainer, {
+        text: "https://ayomide-fadipe.vercel.app",
+        width: 300,
+        height: 300,
+        colorDark: "#0a1f4d",
+        colorLight: "#ffffff",
+        correctLevel: QRCode.CorrectLevel.H,
+        margin: 1
+    });
+});
+
+// ==================== DOWNLOAD WITH CLEAN CENTERED LOGO ====================
+function downloadQRWithLogo() {
+    const container = document.getElementById("qrcode");
+    const canvas = container.querySelector("canvas");
+
+    if (!canvas) {
+        alert("Please wait, QR code is still generating...");
+        return;
+    }
+
+    const finalCanvas = document.createElement("canvas");
+    finalCanvas.width = 300;
+    finalCanvas.height = 300;
+    const ctx = finalCanvas.getContext("2d");
+
+    // Draw QR Code
+    ctx.drawImage(canvas, 0, 0);
+
+    // === WHITE BOX + CENTERED FAJ ===
+    const boxSize = 72;
+    const x = (300 - boxSize) / 2;
+    const y = (300 - boxSize) / 2;
+
+    // White background box
+    ctx.fillStyle = "#ffffff";
+    ctx.fillRect(x, y, boxSize, boxSize);
+
+    // Border
+    ctx.strokeStyle = "#0a1f4d";
+    ctx.lineWidth = 5;
+    ctx.strokeRect(x, y, boxSize, boxSize);
+
+    // Text - Centered properly
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    ctx.font = "bold 31px 'Poppins', sans-serif";
+
+    // F
+    ctx.fillStyle = "#0a1f4d";
+    ctx.fillText("F", x + 18, y + 36);
+    
+    // A (Blue)
+    ctx.fillStyle = "#1e90ff";
+    ctx.fillText("A", x + 36, y + 36);
+    
+    // J
+    ctx.fillStyle = "#0a1f4d";
+    ctx.fillText("J", x + 54, y + 36);
+
+    // Download
+    const link = document.createElement("a");
+    link.download = "Fadipe-Ayomide-John-QR-Code.png";
+    link.href = finalCanvas.toDataURL("image/png");
+    link.click();
+}
 </script>
 
     <script src="contact.js"></script>
