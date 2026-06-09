@@ -64,7 +64,16 @@ const awardData = [
         category: 'certification',
         description: 'A professional certification focused on digital literacy, remote collaboration tools, and global freelance management strategies.',
         imagePath: 'assets/certificates/certificate-1.jpg'
-    }
+    },
+    {
+        id: 8,
+        title: 'Essential of Data Analytics',
+        issuer: 'UniAthena & Acacia University Professional Development',
+        date: 'May 2026',
+        category: 'certification',
+        description: 'A professional development certification covering foundational data analytics frameworks, executive decision-making tools, and core methodologies for extracting actionable business insights.',
+        imagePath: 'assets/certificates/certificate-2.jpg'
+    },
 ];
 
 // ==================== 
