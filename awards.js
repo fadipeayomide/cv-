@@ -74,6 +74,15 @@ const awardData = [
         description: 'A professional development certification covering foundational data analytics frameworks, executive decision-making tools, and core methodologies for extracting actionable business insights.',
         imagePath: 'assets/certificates/certificate-2.jpg'
     },
+    {
+        id: 9,
+        title: 'CS250: Python for Data Science',
+        issuer: 'Saylor Academy (Saylor University)',
+        date: 'June 2026',
+        category: 'certification',
+        description: 'An advanced technical certification focused on utilizing Python for data analysis, covering core data structures, scientific computing libraries, and foundational data science methodologies.',
+        imagePath: 'assets/certificates/certificate-3.jpg'
+    }
 ];
 
 // ==================== 
