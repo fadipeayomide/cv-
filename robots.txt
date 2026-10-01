@@ -1,21 +1,6 @@
 # robots.txt for ayomidefadipe.vercel.app
-# Last Updated: March 2026
+
 
 User-agent: *
 Allow: /
-
-# Block Sensitive Folders
-Disallow: /.git/
-Disallow: /node_modules/
-Disallow: /.env
-Disallow: /dist/
-
-# Block Aggressive SEO Scrapers
-User-agent: AhrefsBot
-User-agent: SemrushBot
-User-agent: MJ12bot
-User-agent: DotBot
-Disallow: /
-
-# Sitemap Location
 Sitemap: https://ayomidefadipe.vercel.app/sitemap.xml
