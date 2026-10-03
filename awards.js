@@ -82,7 +82,16 @@ const awardData = [
         category: 'certification',
         description: 'An advanced technical certification focused on utilizing Python for data analysis, covering core data structures, scientific computing libraries, and foundational data science methodologies.',
         imagePath: 'assets/certificates/certificate-3.jpg'
-    }
+    },
+    {
+    id: 10,
+    title: 'Data Science & Analytics',
+    issuer: 'HP LIFE (HP Foundation)',
+    date: 'August 2026',
+    category: 'certification',
+    description: 'A professional certification covering leading data science and analytics practices, methodologies, and tools, focusing on the strategic benefits and essential skills needed for data-driven decision-making in business.',
+    imagePath: 'assets/certificates/certificate-4.jpg'
+}
 ];
 
 // ==================== 
